@@ -48,7 +48,11 @@ products.forEach((product) => {
             <img src="images/icons/checkmark.png" alt=""> Added
           </div>
 
-          <button title="addCart" class="add-to-cart-button js-add-to-cart  button-primary" data-product-name="${product.name}" data-product-id="${product.id} alt="${product.name}">
+          <button title="addCart"
+           class="add-to-cart-button js-add-to-cart  button-primary" 
+           data-product-name="${product.name}" 
+           data-product-id="${product.id}"
+           alt="${product.name}">
             Add to Cart
           </button>
         </div>
@@ -82,7 +86,14 @@ document.querySelectorAll('.js-add-to-cart').forEach((button) => {
           });  
         }
 
-        console.log(cart);
+        let cartQuantity = 0;
+
+        cart.forEach((item) => {
+          cartQuantity += item.quantity;
+        });
+
+        document.querySelector('.cart-quantity').innerHTML = cartQuantity;
+        
         
     })
 })
