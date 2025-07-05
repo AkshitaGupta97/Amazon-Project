@@ -4,6 +4,7 @@
 let productsHTML = '';
 
 products.forEach((product) => {
+    // Using template literals to create the HTML structure for each product
     productsHTML +=  ` 
     
         <div class="product-container">
@@ -16,7 +17,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars"  src="images/ratings/rating-${product.rating.stars * 10}.png">
+            <img class="product-rating-stars" alt="" src="images/ratings/rating-${product.rating.stars * 10}.png">
             <div class="product-rating-count link-primary">
              ${product.rating.count} 
             </div>
@@ -44,10 +45,10 @@ products.forEach((product) => {
           <div class="product-spacer"></div>
 
           <div class="added-to-cart">
-            <img src="images/icons/checkmark.png"> Added
+            <img src="images/icons/checkmark.png" alt=""> Added
           </div>
 
-          <button class="add-to-cart-button button-primary">
+          <button title="addCart" class="add-to-cart-button js-add-to-cart  button-primary" data-product-name="${product.name}" data-product-id="${product.id} alt="${product.name}">
             Add to Cart
           </button>
         </div>
@@ -55,9 +56,35 @@ products.forEach((product) => {
     `
 });
 
+/* dataset = property is used to retrieve all the data from particular element */
+
 const jsProduct = document.querySelector('.products-grid');
 jsProduct.innerHTML = productsHTML;
 
+document.querySelectorAll('.js-add-to-cart').forEach((button) => {
+    button.addEventListener('click', () => {
+        const productId =   button.dataset.productId;
+        
+        let matchingItem;
+        cart.forEach((item) => {
+          if(productId == item.productId) {
+            matchingItem = item;
+          }
+        })
 
+        if(matchingItem){
+          matchingItem.quantity += 1
+        }
+        else{
+          cart.push({
+            productId: productId,
+            quantity: 1,
+          });  
+        }
+
+        console.log(cart);
+        
+    })
+})
 
 
