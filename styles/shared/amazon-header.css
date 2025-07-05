@@ -98,7 +98,7 @@
 
 .amazon-header-right-section {
   width: 180px;
-  flex-shrink: 0;
+  flex-shrink: 0; /* It tells the browser not to shrink this flex item, even if there isn’t enough space in the flex container.*/
   display: flex;
   justify-content: end;
 }
