@@ -1,5 +1,5 @@
 
-export const cart = [
+export let cart = [
   {
     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: 2,
@@ -29,3 +29,17 @@ export function addToCart (productId) {
     }
   })
 }
+
+export function removeFromCart(productId){
+  const newCart = [];
+
+  cart.forEach((cartItem) => {  // agar equal raheta toh delete karna padta, and unequal ko cart mein rakha jaa rha hai
+    if(cartItem.productId !== productId){
+      newCart.push(cartItem); // push the full cart item, not just productId
+    }
+  });
+
+  cart = newCart;
+}
+
+
