@@ -1,5 +1,5 @@
 
-import {cart} from '../data/cart.js'; // Importing the cart array from cart.js.  .. helps to get out of current file
+import {cart, addToCart} from '../data/cart.js'; // Importing the cart array from cart.js.  .. helps to get out of current file
 
 import {products} from '../data/products.js'; // Importing the products array from products.js. 
 
@@ -68,7 +68,7 @@ products.forEach((product) => {
 const jsProduct = document.querySelector('.products-grid');
 jsProduct.innerHTML = productsHTML;
 
-function addToCart (productId) {
+/*function addToCart (productId) {
   let matchingItem;
   cart.forEach((item) => {
     if(productId == item.productId) {
@@ -85,7 +85,7 @@ function addToCart (productId) {
       quantity: 1,
     });  
   }
-}
+}*/
 
 function updateCartQuantity(){
   let cartQuantity = 0;
