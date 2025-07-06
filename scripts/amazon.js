@@ -1,6 +1,8 @@
 
 import {cart} from '../data/cart.js'; // Importing the cart array from cart.js.  .. helps to get out of current file
 
+import {products} from '../data/products.js'; // Importing the products array from products.js. 
+
 // This code will generate the HTML for each product and append it to the container
 let productsHTML = '';
 
