@@ -68,6 +68,9 @@ products.forEach((product) => {
 const jsProduct = document.querySelector('.products-grid');
 jsProduct.innerHTML = productsHTML;
 
+// here we are calling addToCart function from cart.js file
+// This function will be called when the "Add to Cart" button is clicked
+
 /*function addToCart (productId) {
   let matchingItem;
   cart.forEach((item) => {
