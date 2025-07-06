@@ -31,7 +31,7 @@ cart.forEach((cartItem) => {
           ${matchingProduct.name}
         </div>
             <div class="product-price">
-             $${(matchingProduct.pricecents / 100).toFixed(2)}
+             $${(matchingProduct.priceCents / 100).toFixed(2)}
             </div>
             <div class="product-quantity">
               <span>
@@ -53,7 +53,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-option">
                   <input type="radio" checked
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${matchingProduct.id}">
 
                   <div>
                     <div class="delivery-option-date">
@@ -69,7 +69,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Saturday, May 20
@@ -83,7 +83,7 @@ cart.forEach((cartItem) => {
                 <div class="delivery-option">
                   <input type="radio"
                     class="delivery-option-input"
-                    name="delivery-option-1">
+                    name="delivery-option-${matchingProduct.id}">
                   <div>
                     <div class="delivery-option-date">
                       Tuesday, May 27
