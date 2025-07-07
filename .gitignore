@@ -1,8 +1,9 @@
 node_modules/
 dist/
 *.log
-*.ts
-*.js
 *.map
 .DS_Store
 Thumbs.db
+.env
+*.tmp
+.cache/
