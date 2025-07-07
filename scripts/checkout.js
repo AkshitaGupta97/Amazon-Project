@@ -31,25 +31,37 @@ cart.forEach((cartItem) => {
       matchingProduct = product;
     }
   });
+  
+  console.log(cartItem);
+  console.log(cartItem.deliveryOptionId);
+  
+  
+  
 
-    const deliveryOptionId = cartItem.deliveryOptions;
+    /*const deliveryOptionId = cartItem.deliveryOptionId;
+    let deliveryOption;
 
-    let delOption;
-    deliveryOptions.forEach((Option) => {
-      if (Option.id === deliveryOptionId) {
-        delOption = Option;
+    deliveryOptions.forEach((option) => {
+      if(option.id == deliveryOptionId){    // as i want type coercion here, using abstract equality because deliveryOptionId is a s+tring
+        deliveryOption = option;
       }
-    });
+    })
 
+    if (!deliveryOption) {
+      // Handle missing delivery option gracefully
+      console.error(`Delivery option not found for id: ${deliveryOptionId}`);
+      return; // Skip rendering this cart item
+    }
+   
     const today = dayjs();
-    const deliveryDate = today.add(delOption.deliveryDays, 'days'); 
-    const dateString = deliveryDate.format('dddd, MMMM D');
-
+    const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
+    const dateString = deliveryDate.format('dddd, MMMM D'); // Formatting the date to a readable format
+    */
     cartSummaryHTML += `
     <div class="cart-item-container 
     js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
-          Delivery date: ${dateString}
+          Delivery date:
         </div>
         <div class="cart-item-details-grid">
           <img class="product-image" src="${matchingProduct.image}" alt="${matchingProduct.name}">
@@ -99,7 +111,7 @@ function deliveryOptionHTML(matchingProduct, cartItem){
 
     const priceString = option.priceCents === 0 ? 'FREE Shipping' : `$${(option.priceCents / 100).toFixed(2)} - Shipping`;
 
-    const isChecked = option.id === cartItem.deliveryOptions; // Check if this option is selected in the cart
+    const isChecked = option.id === cartItem.deliveryOptionId; // Check if this option is selected in the cart
 
     HTMLDays += `
       <div class="delivery-option js-delivery-option" data-product-id="${matchingProduct.id}" data-delivery-option-id="${option.id}">
