@@ -207,3 +207,12 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.quantity-label {
+  padding: 1px 10px;
+  border: 2px solid orange;
+  border-radius: 4px;
+  color: rgb(220, 94, 63);
+  font-weight: 700;
+  margin-right: 5px;
+}
