@@ -27,6 +27,7 @@ function saveToStorage() {
 }
 
 export function addToCart (productId) {
+
   let matchingItem;
   cart.forEach((item) => {
     if(productId == item.productId) {
@@ -64,6 +65,19 @@ export function removeFromCart(productId){
   // This ensures that the cart array is updated with the new items
 
   saveToStorage(); 
+}
+
+export function updateDeliveryOption(productId, deliveryOptionId) {
+  let matchingItem;
+  cart.forEach((item) => {
+    if(productId == item.productId) {
+      matchingItem = item;
+    }
+  });
+
+  matchingItem.deliveryOptions = deliveryOptionId; // Update the delivery option for the matching item
+  saveToStorage(); // Save the updated cart to localStorage
+
 }
 
 /*

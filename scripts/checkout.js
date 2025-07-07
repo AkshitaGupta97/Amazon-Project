@@ -1,5 +1,5 @@
 
-import {cart, removeFromCart} from '../data/cart.js'; // Importing the cart array from cart.js.
+import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js'; // Importing the cart array from cart.js.
 import {products} from '../data/products.js'; // Importing the products array from products.js.
 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; // Importing dayjs  by ESM (Ecma Script Module) from a CDN.
@@ -102,7 +102,7 @@ function deliveryOptionHTML(matchingProduct, cartItem){
     const isChecked = option.id === cartItem.deliveryOptions; // Check if this option is selected in the cart
 
     HTMLDays += `
-      <div class="delivery-option">
+      <div class="delivery-option js-delivery-option" data-product-id="${matchingProduct.id}" data-delivery-option-id="${option.id}">
         <input type="radio" ${isChecked ? 'checked' : ''}
           class="delivery-option-input"
           name="delivery-option-${matchingProduct.id}">
@@ -144,4 +144,15 @@ document.querySelectorAll('.js-update-quantity').forEach((link) => {
   })
 })
 
+document.querySelectorAll('.js-delivery-option').forEach((element) => {
+  element.addEventListener('click', () => {
 
+    // const productId = element.dataset.productId;
+    // const deliverOptionId = element.dataset.deliveryOptionId;
+
+    // Using destructuring to extract productId and deliverOptionId from the dataset
+      const {productId, deliverOptionId} = element.dataset;
+
+    updateDeliveryOption(productId, deliverOptionId)
+  })
+})
