@@ -1,7 +1,8 @@
 node_modules/
-.env
 dist/
-.vscode/
 *.log
+*.ts
+*.js
+*.map
 .DS_Store
 Thumbs.db
