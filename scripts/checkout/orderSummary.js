@@ -13,10 +13,10 @@ import { renderPaymentSummary } from './paymentSummary.js';
 // double dot ../ -> move from parent directory to the grandparent directory
 
 
-const today = dayjs(); // Getting today's date using dayjs
-const deliveryDate = today.add(7, 'days'); // Adding 7 days to today's date
+//const today = dayjs(); // Getting today's date using dayjs
+//const deliveryDate = today.add(7, 'days'); // Adding 7 days to today's date
 
-console.log(deliveryDate.format('dddd, MMMM D')); // Formatting the date to a readable format
+//console.log(deliveryDate.format('dddd, MMMM D')); // Formatting the date to a readable format
 // Example: "Tuesday, May 15"
 // dddd - Full name of the day
 // MMMM - Full name of the month
