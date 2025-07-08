@@ -1,4 +1,19 @@
 
+export function getDeliveryOptionById(deliveryOptionId) {
+  let deliveryOption;
+
+    deliveryOptions.forEach((option) => {
+    if(option.id === deliveryOptionId){    // as i want type coercion here, using abstract equality because deliveryOptionId is a s+tring
+      deliveryOption = option;
+    }
+  });
+
+  return deliveryOption || deliveryOptions[0]; // Return the first option if not found
+
+}
+
+
+
 export const deliveryOptions = [
     {
         id: '1',

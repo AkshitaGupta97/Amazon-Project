@@ -22,10 +22,8 @@ function saveToStorage(){
   localStorage.setItem('cart', JSON.stringify(cart));
 }
 
-console.log(cart);
 
-
-cart.forEach(cartItem => {
+/*cart.forEach(cartItem => {
   const option = deliveryOptions.find(opt => opt.id === cartItem.deliveryOptionId);
 
   if (option) {
@@ -34,11 +32,9 @@ cart.forEach(cartItem => {
     console.warn(`No delivery option found for ID: ${cartItem.deliveryOptionId}`);
   }
 });
+*/
 
 
-cart.forEach(option => {
-  console.log(option.deliveryOptionId);
-});
 
 export function addToCart(productId){
   let matchingItem;

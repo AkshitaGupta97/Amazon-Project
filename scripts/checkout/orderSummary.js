@@ -1,11 +1,11 @@
 
 import {cart, removeFromCart, updateDeliveryOption} from '../../data/cart.js'; // Importing the cart array from cart.js.
-import {products} from '../../data/products.js'; // Importing the products array from products.js.
+import {products, getProductId} from '../../data/products.js'; // Importing the products array from products.js.
 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; // Importing dayjs  by ESM (Ecma Script Module) from a CDN.
 // this is a default export, we can use this when we want to export 1 thing from a module.
 
-import {deliveryOptions} from '../../data/deliveryOption.js'; // Importing the deliveryOption array from deliveryOption.js.
+import {deliveryOptions, getDeliveryOptionById} from '../../data/deliveryOption.js'; // Importing the deliveryOption array from deliveryOption.js.
 
 // single dot ./ -> move from current directory/ folder to the parent directory
 // double dot ../ -> move from parent directory to the grandparent directory
@@ -29,25 +29,29 @@ export function renderOrderSummary(){
     cart.forEach((cartItem) => {
       const productId = cartItem.productId;
       
-      let matchingProduct;
+      const matchingProduct = getProductId(productId); // Using the getProductId function to find the matching product
 
+      // access this function from product.js file
+      /*let matchingProduct;
       products.forEach((product) => {
         if(product.id === productId){
           matchingProduct = product;
         }
       });
-      
+      */
 
         const deliveryOptionId = cartItem.deliveryOptionId;
         
-        let deliveryOption;
-
+        const deliveryOption = getDeliveryOptionById(deliveryOptionId); // Using the getDeliveryOptionById function to find the matching delivery option
+               
+        /*let deliveryOption;
         deliveryOptions.forEach((option) => {
           if(option.id == deliveryOptionId){    // as i want type coercion here, using abstract equality because deliveryOptionId is a s+tring
             deliveryOption = option;
           }
         })
-
+        */ 
+       // or access this function from deliveryOption.js file
 
 
         if (!deliveryOption) {
@@ -200,3 +204,7 @@ export function renderOrderSummary(){
 // Controller: The event listeners and functions that manipulate the data (like addToCart, remove) to interact with page
 // as we are using the MVC pattern, the controller is responsible for handling user interactions and updating the model and view accordingly.
 // by using renderOrderSummary, we are updating the view based on the current state of the model (cart, products, deliveryOptions). without duplicating the code, we are ensuring that the view is always in sync with the model.
+
+// model  = save the data
+// view = generate data via html
+// controller = make it interactive by adding event listeners and functions to manipulate the data
