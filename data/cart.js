@@ -1,102 +1,79 @@
 
-export let cart = JSON.parse(localStorage.getItem('cart'))
+import { deliveryOptions } from './deliveryOption.js';
 
-if(!Array.isArray(cart)){ // check if cart is not an array or null
-  // If cart is not an array, initialize it with some default items
+export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+if(!Array.isArray(cart)) {
   cart = [
     {
-      productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
-      quantity: 2,
+      productId: '1',
       deliveryOptionId: '1',
+      quantity: 2
     },
     {
-      productId: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
-      quantity: 1,
+      productId: '2',
       deliveryOptionId: '2',
-    }
-  ];
-  
-  saveToStorage(); // Save the initialized cart to localStorage
-}
-
-function saveToStorage() {
-  localStorage.setItem('cart', JSON.stringify(cart));
-  //console.log('Cart saved to localStorage:', cart);
-  
-}
-
-/*function saveToStorage(){
-  localStorage.setItem('cart', JSON.stringify([
-    {
-      productId: "10ed8504-57db-433c-b0a3-fc71a35c88a1",
-      quantity: 1,
-      deliveryOptionId: '1'  // ✅ Rename the key
+      quantity: 1
     },
-    {
-      productId: "02e3a47e-dd68-467e-9f71-8bf6f723fdae",
-      quantity: 1,
-      deliveryOptionId: '1'
-    }
-  ]));
-
+  ]
 }
-*/
-export function addToCart (productId) {
 
+function saveToStorage(){
+  localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+console.log(cart);
+
+
+cart.forEach(cartItem => {
+  const option = deliveryOptions.find(opt => opt.id === cartItem.deliveryOptionId);
+
+  if (option) {
+    console.log(`Delivery: ${option.id} days, ₹${(option.priceCents / 100).toFixed(2)}`);
+  } else {
+    console.warn(`No delivery option found for ID: ${cartItem.deliveryOptionId}`);
+  }
+});
+
+
+cart.forEach(option => {
+  console.log(option.deliveryOptionId);
+});
+
+export function addToCart(productId){
   let matchingItem;
-  cart.forEach((item) => {
-    if(productId == item.productId) {
-      matchingItem = item;
+
+  cart.forEach((cartItem) => {
+    if(productId === cartItem.productId){
+      matchingItem = cartItem;
     }
   });
 
-    if(matchingItem){
-      matchingItem.quantity += 1
-    }
-    else{
-      cart.push({
-        productId: productId,
-        quantity: 1,
-        deliveryOptions: '1' // Default delivery option
-      });  
-    }
-    
-    saveToStorage();
+  if(matchingItem){
+    matchingItem.quantity += 1;
+  }
+  else {
+    cart.push({
+      productId: productId,
+      deliveryOptionId: '1', // Default delivery option
+      quantity: 1
+    })
+  }
+
+  saveToStorage();
+
 }
+
 
 export function removeFromCart(productId){
   const newCart = [];
-
-  cart.forEach((cartItem) => {  // agar equal raheta toh delete karna padta, and unequal ko cart mein rakha jaa rha hai
+ 
+  cart.forEach((cartItem) => {
     if(cartItem.productId !== productId){
-      newCart.push(cartItem); // push the full cart item, not just productId
+      newCart.push(cartItem);
     }
   });
 
-  //cart = newCart;
-
-  cart.length = 0; // Clear the existing cart array
-  cart.push(...newCart); // Push all items from newCart into the cart array
-  // This ensures that the cart array is updated with the new items
-
-  saveToStorage(); 
+  cart = newCart;
+  saveToStorage();
 }
-
-export function updateDeliveryOption(productId, deliveryOptionId) {
-  let matchingItem;
-  cart.forEach((item) => {
-    if(productId == item.productId) {
-      matchingItem = item;
-    }
-  });
-
-  matchingItem.deliveryOptions = deliveryOptionId; // Update the delivery option for the matching item
-  saveToStorage(); // Save the updated cart to localStorage
-
-}
-
-/*
-export function updateFromCart(productId) {
-  
-}
-*/

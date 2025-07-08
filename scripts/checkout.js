@@ -1,11 +1,13 @@
 
-import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js'; // Importing the cart array from cart.js.
+import {cart, removeFromCart} from '../data/cart.js'; // Importing the cart array from cart.js.
 import {products} from '../data/products.js'; // Importing the products array from products.js.
 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; // Importing dayjs  by ESM (Ecma Script Module) from a CDN.
 // this is a default export, we can use this when we want to export 1 thing from a module.
 
 import {deliveryOptions} from '../data/deliveryOption.js'; // Importing the deliveryOption array from deliveryOption.js.
+
+
 
 
 const today = dayjs(); // Getting today's date using dayjs
@@ -32,13 +34,9 @@ cart.forEach((cartItem) => {
     }
   });
   
-  console.log(cartItem);
-  console.log(cartItem.deliveryOptionId);
-  
-  
-  
 
-    /*const deliveryOptionId = cartItem.deliveryOptionId;
+    const deliveryOptionId = cartItem.deliveryOptionId;
+    
     let deliveryOption;
 
     deliveryOptions.forEach((option) => {
@@ -46,6 +44,8 @@ cart.forEach((cartItem) => {
         deliveryOption = option;
       }
     })
+
+
 
     if (!deliveryOption) {
       // Handle missing delivery option gracefully
@@ -56,12 +56,12 @@ cart.forEach((cartItem) => {
     const today = dayjs();
     const deliveryDate = today.add(deliveryOption.deliveryDays, 'days');
     const dateString = deliveryDate.format('dddd, MMMM D'); // Formatting the date to a readable format
-    */
+    
     cartSummaryHTML += `
     <div class="cart-item-container 
     js-cart-item-container-${matchingProduct.id}">
         <div class="delivery-date">
-          Delivery date:
+          Delivery date: ${dateString}
         </div>
         <div class="cart-item-details-grid">
           <img class="product-image" src="${matchingProduct.image}" alt="${matchingProduct.name}">
@@ -111,17 +111,25 @@ function deliveryOptionHTML(matchingProduct, cartItem){
 
     const priceString = option.priceCents === 0 ? 'FREE Shipping' : `$${(option.priceCents / 100).toFixed(2)} - Shipping`;
 
-    const isChecked = option.id === cartItem.deliveryOptionId; // Check if this option is selected in the cart
+    const isChecked = `${option.id}` === `${cartItem.deliveryOptionId}`;    // Check if this option is selected in the cart
+
 
     HTMLDays += `
       <div class="delivery-option js-delivery-option" data-product-id="${matchingProduct.id}" data-delivery-option-id="${option.id}">
-        <input type="radio" ${isChecked ? 'checked' : ''}
+        <input
+          type="radio"
+          ${isChecked ? 'checked' : ''}
           class="delivery-option-input"
-          name="delivery-option-${matchingProduct.id}">
-      <div>
-        <div class="delivery-option-date">
-          ${dateString}
-        </div>
+          name="delivery-option-${matchingProduct.id}"
+          value="${option.id}" 
+          data-product-id="${matchingProduct.id}"
+          data-delivery-option-id="${option.id}"
+        >
+
+        <div>
+          <div class="delivery-option-date">
+            ${dateString}
+          </div>
           <div class="delivery-option-price">
             ${priceString} Shipping
           </div>
@@ -131,6 +139,7 @@ function deliveryOptionHTML(matchingProduct, cartItem){
   });
   return HTMLDays;
 }
+
 
 
 document.querySelector('.order-summary').innerHTML = cartSummaryHTML;
@@ -158,13 +167,15 @@ document.querySelectorAll('.js-update-quantity').forEach((link) => {
 
 document.querySelectorAll('.js-delivery-option').forEach((element) => {
   element.addEventListener('click', () => {
+   // const { productId, deliveryOptionId } = element.dataset;
+   
+   // updateDeliveryOption(productId, deliveryOptionId);
+  });
+});
 
-    // const productId = element.dataset.productId;
+
+
+// const productId = element.dataset.productId;
     // const deliverOptionId = element.dataset.deliveryOptionId;
 
     // Using destructuring to extract productId and deliverOptionId from the dataset
-      const {productId, deliverOptionId} = element.dataset;
-
-    updateDeliveryOption(productId, deliverOptionId)
-  })
-})

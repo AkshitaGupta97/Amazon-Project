@@ -16,3 +16,11 @@ export const deliveryOptions = [
         priceCents: 199,
     }
 ]
+
+deliveryOptions.forEach(option => {
+  console.log(option.id);
+});
+
+
+
+
