@@ -2,7 +2,7 @@
 import {cart} from '../../data/cart.js'; // Importing the cart array from cart.js.
 import {products, getProductId} from '../../data/products.js'; // Importing the products array from products.js.
 import { getDeliveryOptionById } from '../../data/deliveryOption.js';
-import { formatCurrency } from '../currency/formatMoney.js'; // Importing the formatCurrency function to format the price in dollars.
+import { formatCurrency } from '../utility_code/formatMoney.js'; // Importing the formatCurrency function to format the price in dollars.
 
 export function renderPaymentSummary(){
 
@@ -64,4 +64,14 @@ export function renderPaymentSummary(){
     
 }
 
+/*
+    TEST OUR CODE 
+    ****** MANUAL TESTING   *****  not goot practice of testing, hard to re-test the same code manualy
 
+    1. right click on any file
+    2. open with live server
+    
+    ******  AUTOAMTED TESTING  *******   test via code
+
+
+*/
