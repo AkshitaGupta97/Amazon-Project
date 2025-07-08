@@ -7,6 +7,8 @@ import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; /
 
 import {deliveryOptions, getDeliveryOptionById} from '../../data/deliveryOption.js'; // Importing the deliveryOption array from deliveryOption.js.
 
+import { renderPaymentSummary } from './paymentSummary.js';
+
 // single dot ./ -> move from current directory/ folder to the parent directory
 // double dot ../ -> move from parent directory to the grandparent directory
 
@@ -158,6 +160,9 @@ export function renderOrderSummary(){
         removeFromCart(delProductId);
 
         document.querySelector(`.js-cart-item-container-${delProductId}`).remove();
+
+        renderPaymentSummary();
+
       
       })
     })
@@ -167,8 +172,7 @@ export function renderOrderSummary(){
         const updateProductId = link.dataset.productId;
 
         updateFromCart(updateProductId);
-      
-        
+             
       })
     })
 
@@ -183,6 +187,8 @@ export function renderOrderSummary(){
         // This is because the delivery option is now updated in the cart, and we need to so use renderOrderSummary to reflect that change
 
         renderOrderSummary(); // Re-render the order summary to reflect the updated delivery option
+
+        renderPaymentSummary(); // i want the payment as when we change the shipping option the payment mode also changes
 
       });
     });
