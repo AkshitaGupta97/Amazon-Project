@@ -1,5 +1,5 @@
 
-import {cart, removeFromCart} from '../data/cart.js'; // Importing the cart array from cart.js.
+import {cart, removeFromCart, updateDeliveryOption} from '../data/cart.js'; // Importing the cart array from cart.js.
 import {products} from '../data/products.js'; // Importing the products array from products.js.
 
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js'; // Importing dayjs  by ESM (Ecma Script Module) from a CDN.
@@ -167,9 +167,9 @@ document.querySelectorAll('.js-update-quantity').forEach((link) => {
 
 document.querySelectorAll('.js-delivery-option').forEach((element) => {
   element.addEventListener('click', () => {
-   // const { productId, deliveryOptionId } = element.dataset;
+    const { productId, deliveryOptionId } = element.dataset;
    
-   // updateDeliveryOption(productId, deliveryOptionId);
+    updateDeliveryOption(productId, deliveryOptionId);
   });
 });
 
