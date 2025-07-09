@@ -1,21 +1,28 @@
 
 import { deliveryOptions } from './deliveryOption.js';
 
-export let cart = JSON.parse(localStorage.getItem('cart')) || [];
+export let cart;
 
-if(!Array.isArray(cart)) {
-  cart = [
-    {
-      productId: '1',
-      deliveryOptionId: '1',
-      quantity: 2
-    },
-    {
-      productId: '2',
-      deliveryOptionId: '2',
-      quantity: 1
-    },
-  ]
+loadFromStorage();
+
+export function loadFromStorage(){
+
+  cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+  if(!Array.isArray(cart)) {
+    cart = [
+      {
+        productId: '1',
+        deliveryOptionId: '1',
+        quantity: 2
+      },
+      {
+        productId: '2',
+        deliveryOptionId: '2',
+        quantity: 1
+      },
+    ]
+  }
 }
 
 function saveToStorage(){
