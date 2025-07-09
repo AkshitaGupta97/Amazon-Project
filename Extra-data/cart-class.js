@@ -1,8 +1,13 @@
 
 class Cart {
-    cartItems = undefined;
-    localStorageKey = undefined;
+    cartItems;
+    localStorageKey;
      
+    constructor(localStorageKey){
+        this.localStorageKey = localStorageKey;
+        this.loadFromStorage();
+    }
+
     loadFromStorage(){
             // here this represent cart
         this.cartItems = JSON.parse(localStorage.getItem(this.localStorageKey)) || [];
@@ -68,10 +73,8 @@ class Cart {
 }
 
 // this is oops concept
-const cart = new Cart();
-const businessCart = new Cart();
-cart.loadFromStorage = 'cart-oop';
-businessCart.loadFromStorage = 'cart-business';
+const cart = new Cart('cart-oop');
+const businessCart = new Cart('cart-business');
 
 console.log(cart);
 console.log(businessCart);
