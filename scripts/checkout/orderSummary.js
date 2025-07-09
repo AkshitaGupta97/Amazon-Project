@@ -67,7 +67,7 @@ export function renderOrderSummary(){
         const dateString = deliveryDate.format('dddd, MMMM D'); // Formatting the date to a readable format
         
         cartSummaryHTML += `
-        <div class="cart-item-container 
+        <div class="cart-item-container js-test-cart
         js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
               Delivery date: ${dateString}
@@ -82,7 +82,7 @@ export function renderOrderSummary(){
                 <div class="product-price">
                 $${(matchingProduct.priceCents / 100).toFixed(2)}
                 </div>
-                <div class="product-quantity">
+                <div class="product-quantity js-test-quantity-${matchingProduct.id}">
                   <span>
                         Quantity: <span class="quantity-label">${cartItem.quantity}</span>
                       </span>
@@ -162,7 +162,6 @@ export function renderOrderSummary(){
         document.querySelector(`.js-cart-item-container-${delProductId}`).remove();
 
         renderPaymentSummary();
-
       
       })
     })
