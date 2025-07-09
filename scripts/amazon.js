@@ -6,6 +6,9 @@ import {products} from '../data/products.js'; // Importing the products array fr
 // This code will generate the HTML for each product and append it to the container
 let productsHTML = '';
 
+// now this code is accessed from products.js file.
+//<img class="product-rating-stars" alt="" src="images/ratings/rating-${product.rating.stars * 10}.png"> -->
+
 products.forEach((product) => {
     // Using template literals to create the HTML structure for each product
     productsHTML +=  ` 
@@ -20,14 +23,14 @@ products.forEach((product) => {
           </div>
 
           <div class="product-rating-container">
-            <img class="product-rating-stars" alt="" src="images/ratings/rating-${product.rating.stars * 10}.png">
+            <img class="product-rating-stars" alt="" src="${product.getStarsUrl()}">
             <div class="product-rating-count link-primary">
              ${product.rating.count} 
             </div>
           </div>
 
           <div class="product-price">
-            $${(product.priceCents / 100).toFixed(2)}
+            ${product.getPrice()}
           </div>
 
           <div class="product-quantity-container">

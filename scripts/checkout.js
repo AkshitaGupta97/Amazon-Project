@@ -3,7 +3,7 @@ import {renderOrderSummary} from './checkout/orderSummary.js'; // Importing the 
 
 import { renderPaymentSummary} from './checkout/paymentSummary.js';
 
-import '../Extra-data/cart-class.js';
+//import '../Extra-data/cart-class.js'; it is for practice
 
 
 renderOrderSummary(); // Calling the function to render the order summary
