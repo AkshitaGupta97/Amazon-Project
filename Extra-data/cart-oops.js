@@ -1,5 +1,5 @@
 
-import { deliveryOptions } from './deliveryOption.js';
+import { deliveryOptions } from '../data/deliveryOption.js';
 
 function Cart(localStorageKey){
     const cart = {
