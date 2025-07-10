@@ -14,7 +14,6 @@ describe('test suit: renderOrderSummary', () => {
         });
     });
 
-
     beforeEach(() => {
         spyOn(localStorage, 'setItem');
 
