@@ -5,9 +5,14 @@ import { renderPaymentSummary} from './checkout/paymentSummary.js';
 
 //import '../Extra-data/cart-class.js'; it is for practice
 
-import '../data/backend-Practice.js'
+//import '../data/backend-Practice.js'
 
+import { loadProducts } from '../data/products.js';
 
-renderOrderSummary(); // Calling the function to render the order summary
+loadProducts(() => {
 
-renderPaymentSummary(); // Calling the function to render the payment summary
+    renderOrderSummary(); // Calling the function to render the order summary
+
+    renderPaymentSummary(); // Calling the function to render the payment summary
+    
+});
