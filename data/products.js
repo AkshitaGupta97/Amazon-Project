@@ -32,10 +32,35 @@ class Product {
   getPrice(){
     return `$${formatCurrency(this.priceCents)}`;
   }
-
+  extraInfoHTML(){  // this is done for that i don't want to display for other product except clothes
+    return ''; ;
+  }
 }
 
-// $${(this.priceCents / 100).toFixed(2)}
+// inheritance concept
+// here we are using inheritance concept because we want to this specific property or clothes
+class Clothing extends Product {
+  sizeChartLink;
+
+  constructor(productDetails){
+    super(productDetails);
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
+  
+  extraInfoHTML(){
+   // super.extraInfoHTML() // Super
+    return `
+      <a href="${this.sizeChartLink}" target = "_blank">Size Cart </a>
+    `;
+  }
+}
+
+// built in class -> date
+/*
+const date = new Date();
+console.log(date.toLocaleTimeString());
+*/
+
 
 export const products = [
   {
@@ -697,6 +722,12 @@ export const products = [
     ]
   }
 ].map((productDetails) => {
+
+  if(productDetails.type === 'clothing'){
+    return new Clothing(productDetails)
+  }
+
+
   return new Product(productDetails)
 });
 

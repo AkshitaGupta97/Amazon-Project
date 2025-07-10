@@ -9,6 +9,8 @@ let productsHTML = '';
 // now this code is accessed from products.js file.
 //<img class="product-rating-stars" alt="" src="images/ratings/rating-${product.rating.stars * 10}.png"> -->
 
+//${product.extraInfoHTML()}  -> this is known as polymorphism, using method without knowing the class
+
 products.forEach((product) => {
     // Using template literals to create the HTML structure for each product
     productsHTML +=  ` 
@@ -47,6 +49,8 @@ products.forEach((product) => {
               <option value="10">10</option>
             </select>
           </div>
+
+          ${product.extraInfoHTML()} 
 
           <div class="product-spacer"></div>
 
