@@ -12,16 +12,25 @@ import { loadCart } from '../data/cart.js';
 
 // Async await
 // async -> makes a function and return a promise
-
+    // to handle error in async we use try-catch
 async function loadPage(){
+    try{
+        // we can manually create an error using throw, and it doesnot works for fututre error instead of it use reject.
 
-    await loadProductsFetch();
+      //  throw 'error1'; 
 
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value3');
+        await loadProductsFetch();
+
+        const value = await new Promise((resolve, reject) => {
+            loadCart(() => {
+                resolve('value3');
+              //  reject('error by reject')
+            })
         })
-    })
+
+    }catch(error){
+        console.log('Unexpected error', 'Please try again later');
+    }
     renderOrderSummary();
     renderPaymentSummary();
 
