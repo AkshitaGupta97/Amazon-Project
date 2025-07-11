@@ -3,6 +3,7 @@ import {cart} from '../../data/cart.js'; // Importing the cart array from cart.j
 import {products, getProductId} from '../../data/products.js'; // Importing the products array from products.js.
 import { getDeliveryOptionById } from '../../data/deliveryOption.js';
 import { formatCurrency } from '../utility_code/formatMoney.js'; // Importing the formatCurrency function to format the price in dollars.
+import { addOrder } from '../../data/orders.js';
 
 export function renderPaymentSummary(){
 
@@ -61,8 +62,39 @@ export function renderPaymentSummary(){
     `;
 
     document.querySelector('.payment-summary').innerHTML = paymentSummaryHTML; // Render the payment summary HTML into the payment summary section of the page
+
+    document.querySelector('.place-order-button')
+        .addEventListener('click', async() => {
+            try {
+                const response = await fetch('https://supersimplebackend.dev/orders', {
+                    method: 'POST', 
+                    headers: {
+                        'Content-Type': 'application/json' // tells backend what type of data we are sending 
+                    }, 
+                    body: JSON.stringify({  // it provides whole bodty of data, we need to convert into stringify
+                        cart: cart
+                    })
+                });
+                const order = await response.json(); // to get data we use this, as it is also a promise
+                // console.log(order);
+                addOrder(order);
+            
+            }catch(error){
+                console.log('unexpected error, Try again');
+            }
+            
+            // lets us to control the url at the top, if we change it it also reflect
+            window.location.href = 'orders.html'
+        })
     
 }
+
+
+
+
+
+
+
 
 /*
     TEST OUR CODE 
